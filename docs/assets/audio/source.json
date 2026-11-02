@@ -1,0 +1,16 @@
+{
+  "source": "l3hrja-starting-power-generator_2-235138.mp3",
+  "start_seconds": [
+    10.8,
+    14.8
+  ],
+  "failed_attempt_seconds": [
+    8.5,
+    11.0
+  ],
+  "running_seconds": [
+    27,
+    35
+  ],
+  "loop_crossfade_seconds": 0.15
+}
