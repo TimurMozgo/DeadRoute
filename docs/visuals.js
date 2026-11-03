@@ -54,7 +54,7 @@ function paintDistrict(g,level){
  for(const y of [325,590,1120])for(const x of [17,301]){if(level.style!=='industrial'){rect(x-10,y-8,40,58,'#57633e');tree(x-5,y);}else{rect(x-9,y,44,50,'#6e6250');for(let n=0;n<5;n++)rect(x-8+n*9,y,2,50,'#363f3e');} }
  for(const [x,y] of [[77,320],[263,500],[77,815],[263,1120]])lamp(x,y);
  for(const [x,y] of [[23,540],[298,845]])bench(x,y);
- for(const [x,y] of level.barriers){obstacle(x,y,31,16);rect(x+3,y+4,32,17,'#17221e88');rect(x,y,31,14,'#b49b65');for(let n=0;n<4;n++){g.fillStyle='#353b33';g.beginPath();g.moveTo(x+n*9,y);g.lineTo(x+n*9+6,y);g.lineTo(x+n*9,y+14);g.lineTo(x+n*9-6,y+14);g.fill();}rect(x,y+14,4,5,'#535447');rect(x+27,y+14,4,5,'#535447');}
+ for(const [x,y] of level.barriers){obstacle(x,y,31,16);rect(x+2,y+5,33,17,'#080e0bbb');rect(x-1,y-1,33,16,'#141b19');rect(x,y,31,14,'#ffd34e');g.save();g.beginPath();g.rect(x,y,31,14);g.clip();for(let n=0;n<5;n++){g.fillStyle='#19211f';g.beginPath();g.moveTo(x+n*9,y);g.lineTo(x+n*9+5,y);g.lineTo(x+n*9-1,y+14);g.lineTo(x+n*9-6,y+14);g.fill();}g.restore();rect(x,y,31,2,'#fff0a0');rect(x,y+12,31,2,'#e9a92c');rect(x,y,2,14,'#ffe587');rect(x+29,y,2,14,'#ffe587');rect(x+1,y+14,4,5,'#c1c9b9');rect(x+26,y+14,4,5,'#c1c9b9');rect(x-1,y+18,8,2,'#58655a');rect(x+24,y+18,8,2,'#58655a');rect(x+2,y+4,3,3,'#fff6cc');rect(x+26,y+4,3,3,'#fff6cc');}
  level.cars.forEach(([x,y],i)=>car(x,y,i%2?'#776751':'#576f6b'));
  // Dustbins, wooden crates, discarded bags, drains, warning posters and traffic cones.
  for(const [x,y] of [[72,245],[260,385],[73,700],[260,970]]){rect(x,y,12,17,'#344b40');rect(x-1,y-2,14,4,'#627663');rect(x+3,y+3,2,10,'#1b3027');}
