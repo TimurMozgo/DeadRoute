@@ -3,7 +3,7 @@ const ICON_PATHS={
  arrow:'<path d="M12 21V4m-7 7 7-7 7 7"/>',
  heart:'<path fill="currentColor" stroke="none" d="M12 21 3 12C-2 5 7-1 12 6c5-7 14-1 9 6Z"/><path stroke="#251715" d="m4 12 4 0 2-4 3 8 2-4h5"/>',
  ammo:'<path fill="currentColor" d="M4 8 7 3l3 5v13H4Zm10 0 3-5 3 5v13h-6Z"/><path stroke="#241e18" d="M4 16h6m4 0h6"/>',
- supplies:'<path d="m3 7 9-4 9 4v14H3Zm0 0 9 4 9-4M12 11v10"/><path d="M8 5 17 9v5"/>',
+ supplies:'<path d="M12 2v20M18 6c-2-3-12-3-12 2 0 5 12 3 12 8 0 5-10 5-13 1"/>',
  grenade:'<path fill="currentColor" d="M9 8h7l4 7-2 7H6l-2-7Z"/><path d="M10 8V3h7l4 6M16 3V1h4"/><path stroke="#241e18" d="M5 15h14M12 9v12"/>',
  reload:'<path d="M20 9A8 8 0 0 0 6 5L3 8m0-5v5h5M4 15a8 8 0 0 0 14 4l3-3m0 5v-5h-5"/>',
  sound:'<path d="M3 9h4l5-5v16l-5-5H3ZM16 8c3 2 3 6 0 8m3-11c5 4 5 10 0 14"/>',
