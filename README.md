@@ -17,7 +17,6 @@ Open http://localhost:4173/ and press the start button to enable audio.
 ## Controls
 
 - Mobile: movement joystick, reload, interaction and grenade buttons.
-- Desktop: WASD / arrow keys; R reload; E interact; G grenade; Q switch weapon.
 - Shooting is automatic when a valid target is in range.
 
 ## GitHub Pages
@@ -33,4 +32,6 @@ Game development: **TINELLAB**.
 Character and environment sprites: CraftPix Urban Zombie Survival Pixel Art Minigame Kit.
 Audio: user-supplied recordings, including files credited in their source names to Dragon Studio, SoundReality, Freesound Community, l3hrja and other creators. These assets retain their respective rights; this repository does not grant a separate license to reuse third-party assets.
 
-Version: 0.16.4. Mobile performance and the final published build still need device testing.
+Version: 0.17. Mobile performance and the final published build still need device testing.
+
+Onboarding: six illustrated mobile tutorial cards with smooth transitions and background music. Siege soundtrack starts at the generator blackout and continues through truck evacuation. Music recordings supplied by the project owner: leberch-airium-tense-610770 and John Murphy — The Tunnel.

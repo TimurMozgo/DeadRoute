@@ -3,7 +3,7 @@ let truckScene=null;
 const TRUCK_LINES=[['ВОДИТЕЛЬ','Живые! Мы за вами. Все здесь?'],['ВАНЯ (Я)','Да! Заберите нас — они уже у баррикады!'],['ВОДИТЕЛЬ','Прикрываем вас. Разворачиваюсь — заходите сзади!']];
 function beginTruckScene(){if(truckScene)return;truckScene={time:0,horn:false,crew:[player,...allies.filter(a=>a.hp>0)].map((a,i)=>({...a,seat:i,hit:0,shot:0,reload:0,building:false,repairing:false})),boarded:0};state='evacuation';input.x=input.y=0;keys.clear();interactHeld=false;allies.forEach(a=>{a.repairSite=null;a.repairing=false;a.building=false;});audio.stopAction();audio.stopEngine();audio.stopDread();audio.stopRound();audio.stopReload();$('controls').style.display='none';$('bossbar').classList.add('hidden');$('notice').style.opacity=0;$('phase').textContent='ЭВАКУАЦИЯ';$('missionhint').textContent='ГРУЗОВИК ПРИБЫЛ';}
 function truckHorn(){audio.tone(330,330,.8,.12,'triangle');audio.tone(440,440,.8,.08,'triangle');audio.tone(330,330,.45,.1,'triangle',1);}
-function updateTruckScene(dt){const s=truckScene;if(!s)return;const old=s.time;s.time+=dt;if(old<4&&s.time>=4){truckHorn();s.horn=true;}s.boarded=Math.min(s.crew.length,Math.max(0,Math.floor((s.time-22)/1.15)));if(s.time>=22+s.crew.length*1.15+8){end(true);}}
+function updateTruckScene(dt){const s=truckScene;if(!s)return;const old=s.time;s.time+=dt;if(old<4&&s.time>=4){truckHorn();s.horn=true;}s.boarded=Math.min(s.crew.length,Math.max(0,Math.floor((s.time-22)/1.15)));if(s.time>=22+s.crew.length*1.15+6&&!s.musicStopped){s.musicStopped=true;music.stop(1.5);}if(s.time>=22+s.crew.length*1.15+8){end(true);}}
 function truckRect(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),w,h);}
 // Small code-drawn pixel vehicle, with the kit's original survivor sprites in the cab and bed.
 function drawRescueTruck(x,y,angle,passengers){ctx.save();ctx.translate(Math.round(x),Math.round(y));ctx.rotate(angle);ctx.fillStyle='#0008';ctx.fillRect(-35,-70,74,150);
@@ -36,7 +36,7 @@ function updateBossOmen(dt){bossOmen.time+=dt;const length=audio.effectBuffers?.
 
 let siegeWarning=null;
 function stopSiegeWarning(){if(siegeWarning){for(const source of siegeWarning.sources){try{source?.stop();}catch{}}siegeWarning=null;}}
-function beginSiegeWarning(count){if(siegeWarning)return;audio.stopAction();audio.stopReload();audio.stopEngine();mission.power=false;mission.integrity=0;mission.repairDelay=0;audio.noise(.22,.12,700);shake=3;
+function beginSiegeWarning(count){if(siegeWarning)return;audio.stopAction();audio.stopReload();audio.stopEngine();music.play('siege-music',.22);mission.power=false;mission.integrity=0;mission.repairDelay=0;audio.noise(.22,.12,700);shake=3;
  const members=allies.filter(a=>a.hp>0),name=(preferred,index)=>members.find(a=>a.name===preferred)?.name||members[index]?.name||'ВАНЯ (Я)';
  const fresh=members.filter(a=>!['МАРК','ВЕРА'].includes(a.name));const speaker=(preferred,index)=>members.find(a=>a.name===preferred)?.name||fresh[index%Math.max(1,fresh.length)]?.name||name(preferred,index);const lev=speaker('ЛЕВ',0),nika=speaker('НИКА',1),roman=speaker('РОМАН',2),me='ВАНЯ (Я)';
  const beats=[
