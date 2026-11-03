@@ -10,3 +10,5 @@ body{gap:0}#game{height:100dvh;border-radius:0}#tutorial{position:absolute;inset
 #tutorialimage{object-fit:contain;background:#111b15}
 
 #tutorialheadphones{display:flex;align-items:center;gap:12px;padding:12px;margin-bottom:14px;border:1px solid #677650;border-radius:8px;background:#18221b;color:#d9dfbb;font-size:13px;line-height:1.45}#tutorialheadphones[hidden]{display:none}#tutorialheadphones svg{width:30px;height:30px;flex-shrink:0}
+
+#grenade.grenade-prompt{outline:3px solid #ffdb86;outline-offset:3px;box-shadow:0 0 18px #f5b94a99;background:#584020}
