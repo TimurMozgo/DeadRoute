@@ -40,18 +40,11 @@ function beginSiegeWarning(count){if(siegeWarning)return;audio.stopAction();audi
  const members=allies.filter(a=>a.hp>0),name=(preferred,index)=>members.find(a=>a.name===preferred)?.name||members[index]?.name||'ВАНЯ (Я)';
  const fresh=members.filter(a=>!['МАРК','ВЕРА'].includes(a.name));const speaker=(preferred,index)=>members.find(a=>a.name===preferred)?.name||fresh[index%Math.max(1,fresh.length)]?.name||name(preferred,index);const lev=speaker('ЛЕВ',0),nika=speaker('НИКА',1),roman=speaker('РОМАН',2),me='ВАНЯ (Я)';
  const beats=[
- {duration:3.6,name:lev,text:'Нет, нет… Генератор заглох! Прожекторы не работают!'},
  {duration:(audio.effectBuffers?.['monster-scream']?.duration||3.8)+.7,name:'ИЗ ТЕМНОТЫ',text:'За баррикадой раздаётся пронзительный крик.',sound:'monster-scream',volume:.6},
- {duration:(audio.effectBuffers?.['brute-roar']?.duration||1.6)+.8,name:'ЕЩЁ БЛИЖЕ',text:'Крику отвечает низкий рёв. Затем ещё один — дальше по улице.',sound:'brute-roar',volume:.65},
- {duration:4.5,name:nika,text:'Что это было?! Я ничего не вижу… Они уже здесь?'},
- {duration:4.5,name:roman,text:'Тише. За светом фонарей что-то движется. Чёрт… какое же оно огромное.'},
- {duration:4,name:nika,text:'Может, уйдём? Пока ещё можно! Баррикада это не выдержит!'},
- {duration:4.5,name:me,text:'В темноте нас разорвут по одному. Грузовик едет сюда. Мы должны удержаться.'},
- {duration:4.5,name:lev,text:'Попробуй завести генератор. Без прожекторов мы подпустим их слишком близко.'},
- {duration:3.8,name:roman,text:'Я прикрою… Только не отходите от меня. Пожалуйста.'},
- {duration:4.5,name:me,text:'Держим проход. Светим в одну сторону. Если прорвутся — отходим вместе, к машине.'},
- {duration:3.4,name:nika,text:'Стойте… Там не один. Трое. Они идут!'}];
- for(const beat of beats)if(!beat.sound)beat.duration=Math.max(beat.duration+1,beat.text.length/22+2.2);
+ {duration:(audio.effectBuffers?.['brute-roar']?.duration||1.6)+.8,name:'ЕЩЁ БЛИЖЕ',text:'Из темноты отвечает низкий рёв.',sound:'brute-roar',volume:.65},
+ {duration:3,name:lev,text:'ГЕНЕРАТОР СДОХ… НИКА, ЧТО ТАМ?'},
+ {duration:3,name:nika,text:'ТРОЕ ОГРОМНЫХ. ИДУТ ПРЯМО НА НАС!'},
+ {duration:4,name:lev,text:'ВАНЯ, ЗАВОДИ ГЕНЕРАТОР! МЫ ИХ НЕ ВИДИМ!'}];
  siegeWarning={count,index:0,time:0,beats,sources:[]};state='siegewarning';input.x=input.y=0;keys.clear();interactHeld=false;player.moving=false;allies.forEach(a=>{a.moving=false;a.shot=0;a.building=false;a.repairing=false;});$('bossomen').classList.remove('hidden');$('phase').textContent='ГЕНЕРАТОР СЛОМАН';$('missionhint').textContent='ПРОЖЕКТОРЫ ПОГАСЛИ · ДЕРЖИТЕСЬ ВМЕСТЕ';$('notice').style.opacity=0;showSiegeBeat();}
 function showSiegeBeat(){const s=siegeWarning,b=s.beats[s.index];for(const source of s.sources){try{source?.stop();}catch{}}s.sources=[];$('omenname').textContent=b.name;$('omentext').textContent='';if(b.sound)s.sources.push(audio.effect(b.sound,b.volume));}
 function updateSiegeWarning(dt){const s=siegeWarning;if(!s)return;s.time+=dt;const b=s.beats[s.index];$('omentext').textContent=b.text.slice(0,Math.floor(s.time*(b.sound?30:22)));if(s.time<b.duration)return;s.index++;s.time=0;if(s.index<s.beats.length){showSiegeBeat();return;}
